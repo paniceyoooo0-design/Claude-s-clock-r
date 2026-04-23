@@ -27,8 +27,7 @@ import os
 
 PORT = int(os.environ.get("PORT", 8080))
 
-mcp = FastMCP("time-sense")
-
+mcp = FastMCP("time-sense", host="0.0.0.0", port=PORT)
 
 
 @mcp.tool()
