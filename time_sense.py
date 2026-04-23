@@ -23,8 +23,11 @@ time_sense — 给小克的时间感知
 from mcp.server.fastmcp import FastMCP
 from datetime import datetime
 from zoneinfo import ZoneInfo
+import os
 
-mcp = FastMCP("time-sense")
+PORT = int(os.environ.get("PORT", 8080))
+
+mcp = FastMCP("time-sense", host="0.0.0.0", port=PORT)
 
 
 @mcp.tool()
@@ -81,6 +84,6 @@ def now() -> dict:
 if __name__ == "__main__":
     import sys
     if "--http" in sys.argv:
-        mcp.run(transport="streamable-http", host="0.0.0.0", port=8080)
+        mcp.run(transport="streamable-http")
     else:
         mcp.run()
